@@ -12,5 +12,5 @@ This Project runs a swagger-enabled server in Java using the SpringBoot framewor
 The underlying library integrating swagger to SpringBoot is [springfox](https://github.com/springfox/springfox)  
 
 You can view the api documentation in swagger-ui by pointing to  
-http://localhost:8080/  
+http://localhost:8080/v1/swagger-ui.html
 

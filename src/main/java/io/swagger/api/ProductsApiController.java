@@ -29,7 +29,6 @@ public class ProductsApiController implements ProductsApi {
 
 	public ResponseEntity<Product> addProduct(
 			@ApiParam(value = "Product object", required = true) @RequestBody NewProduct product) {
-		System.out.println("In save product" + product.getName());
 		Product savedProduct = null;
 		try {
 			if (product.getName() == null || product.getName().equals("")) {

@@ -41,7 +41,6 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product saveProduct(Product product) {
-		System.out.println("In save product"+product.getName());
         if (product != null){
         	if(product.getName() == null){
         		throw new RuntimeException("Product name is null");

@@ -76,7 +76,6 @@ public class ProductsApiControllerTest {
     }
     
     private Product getTestProduct(){
-    	System.out.println("Get test prod called");
     	Product product1 = new Product();
         product1.setCode("1");
         product1.setName("Product 1");

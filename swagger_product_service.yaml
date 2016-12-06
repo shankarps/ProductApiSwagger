@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Products REST API
+  description: A demo API for Products
+  contact:
+    name: Shankar
+    email: shankar.pachari@gmail.com
+host: product.demo.com
+basePath: /v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /products:
+    get:
+      description: Returns all products from the system
+      operationId: findProducts
+      produces:
+        - application/json
+      parameters:
+        - name: tag
+          in: query
+          description: tags to filter products by
+          required: false
+          type: string
+      responses:
+        '200':
+          description: product response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/product'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+    post:
+      description: Creates a new product. 
+      operationId: addProduct
+      produces:
+        - application/json
+      parameters:
+        - name: product
+          in: body
+          description: Product object
+          required: true
+          schema:
+            $ref: '#/definitions/newProduct'
+      responses:
+        '200':
+          description: created product
+          schema:
+            $ref: '#/definitions/product'
+        '400':
+          description: Invalid parameters provided
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /products/{code}:
+    get:
+      description: Returns a product based on unique ID (code)
+      operationId: findProductByCode
+      produces:
+        - application/json
+      parameters:
+        - name: code
+          in: path
+          description: code (unique ID) of product to get
+          required: true
+          type: string
+      responses:
+        '200':
+          description: product object
+          schema:
+            $ref: '#/definitions/product'
+        '404':
+          description: Product not found            
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+definitions:
+  product:
+    type: object
+    required:
+      - code
+      - name
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+        format: double
+      tags:
+        type: array
+        items:
+          $ref: "#/definitions/Tag"
+  Tag:
+    type: object
+    properties:
+      name:
+        type: string          
+        
+  newProduct:
+    type: object
+    required:
+      - name
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+        format: double
+      tags:
+        type: array
+        items:
+          $ref: "#/definitions/Tag"
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string

@@ -6,11 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-/**
- * ErrorModel
- */
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-12-06T02:06:19.818Z")
-
 public class ErrorModel   {
   @JsonProperty("code")
   private Integer code = null;
